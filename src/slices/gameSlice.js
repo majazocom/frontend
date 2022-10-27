@@ -11,9 +11,29 @@ const initialState = {
 
 const gameSlice = createSlice({
     name: 'game',
-    initialState
+    initialState,
+    reducers: {
+        setPlayerOne: (state, action) => {
+            const playerOneName = action.payload;
+            state.playerOne = playerOneName;
+        },
+        setPlayerTwo: (state, action) => {
+            const playerTwoName = action.payload;
+            state.playerTwo = playerTwoName;
+        },
+        setPlayerTeam: (state, action) => {
+            // payload: {player: playerTwo, characterToAdd: object}
+            const player = action.payload.player;
+            const characterToAdd = action.payload.characterToAdd;
+            if (player === state.playerOne) {
+                state.playerOneTeam = [...state.playerOneTeam, characterToAdd];
+            }
+        }
+    }
 });
 
 console.log(gameSlice);
+
+export const { setPlayerOne, setPlayerTwo, setPlayerTeam} = gameSlice.actions;
 
 export default gameSlice.reducer;

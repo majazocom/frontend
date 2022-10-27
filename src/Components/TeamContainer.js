@@ -9,7 +9,7 @@ export default function TeamContainer() {
             <ul className='teamList'>
                 {playerOneTeam.length > 0 ? playerOneTeam.map((player) => <li>{player.name}</li>) : null}
             </ul>
-            <h2>{playerTwo === "" ? "Player Two" : playerOne} Team</h2>
+            <h2>{playerTwo === "" ? "Player Two" : playerTwo} Team</h2>
             <ul className='teamList'>
                 {playerTwoTeam.length > 0 ? playerTwoTeam.map((player) => <li>{player.name}</li>) : null}
             </ul>

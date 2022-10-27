@@ -18,6 +18,7 @@ function App() {
       {characters ? characters.map((character) => <div>{character.name}</div>) : null}
       <PlayerContainer />
       <article>
+        <h2>Amount of players in a team:</h2>
         <input type="number" defaultValue={ teamAmount }></input>
       </article>
       <TeamContainer />
