@@ -1,23 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const {teamAmount} = useSelector((state) => state.game);
+  const [characters, setCharacters] = useState([]);
+  function getCharacters() {
+    fetch('http://localhost:1337/characters')
+      .then(res => res.json())
+      .then(data => setCharacters(data))
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={getCharacters}>HEJ</button>
+      {characters ? characters.map((character) => <div>{character.name}</div>) : null}
+      <article>
+        <input type="number" defaultValue={ teamAmount }></input>
+      </article>
     </div>
   );
 }
