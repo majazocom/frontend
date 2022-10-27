@@ -28,6 +28,9 @@ const gameSlice = createSlice({
             if (player === state.playerOne) {
                 state.playerOneTeam = [...state.playerOneTeam, characterToAdd];
             }
+        },
+        setTeamAmount: (state, action) => {
+            state.teamAmount = action.payload;
         }
     }
 });
