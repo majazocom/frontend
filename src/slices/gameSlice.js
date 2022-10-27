@@ -30,7 +30,7 @@ const gameSlice = createSlice({
             }
         },
         setTeamAmount: (state, action) => {
-            state.teamAmount = action.payload;
+            state.teamAmount = parseInt(action.payload);
         }
     }
 });
