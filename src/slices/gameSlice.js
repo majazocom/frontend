@@ -37,6 +37,6 @@ const gameSlice = createSlice({
 
 console.log(gameSlice);
 
-export const { setPlayerOne, setPlayerTwo, setPlayerTeam} = gameSlice.actions;
+export const { setPlayerOne, setPlayerTwo, setPlayerTeam, setTeamAmount} = gameSlice.actions;
 
 export default gameSlice.reducer;
