@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { setPlayerOne, setPlayerTwo } from '../slices/gameSlice';
 
 export default function PlayerContainer() {
@@ -10,14 +11,24 @@ export default function PlayerContainer() {
     const [playerTwoName, setPlayerTwoName] = useState(playerTwo);
     const dispatch = useDispatch();
 
+    function goNext() {
+        dispatch(setPlayerOne(playerOneName))
+        dispatch(setPlayerTwo(playerTwoName))
+    }
+
     return (
-        <section>
-            <h2>Player One:</h2>
-            <input defaultValue={playerOne} onChange={(e) => setPlayerOneName(e.target.value)}></input>
-            <button onClick={() => {dispatch(setPlayerOne(playerOneName))}}>Enter</button>
-            <h2>Player Two:</h2>
-            <input defaultValue={playerTwo} onChange={(e) => setPlayerTwoName(e.target.value)}></input>
-            <button onClick={() => {dispatch(setPlayerTwo(playerTwoName))}}>Enter</button>
-        </section>
+        <main>
+            <section>
+                <article>
+                    <h2>{playerOneName}:</h2>
+                    <input defaultValue={playerOne} onChange={(e) => setPlayerOneName(e.target.value)}></input>
+                </article>
+                <article>
+                    <h2>Player 2:</h2>
+                    <input defaultValue={playerTwo} onChange={(e) => setPlayerTwoName(e.target.value)}></input>
+                </article>
+            </section>
+            <Link to="/chooseteamamount"><button onClick={goNext}>NEXT</button></Link>
+        </main>
     )
 }

@@ -1,23 +1,37 @@
 import './App.css';
-import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
 import PlayerContainer from './Components/PlayerContainer';
-import TeamContainer from './Components/TeamContainer';
 import TeamAmountComponent from './Components/TeamAmountComponent';
+import { useDispatch } from 'react-redux';
+import { setCharacters } from './slices/charactersSlice';
+import Start from './Components/Start';
+import ChooseTeamContainer from './Components/ChooseTeamContainer';
+import Nav from './Components/Nav';
 
 function App() {
-  const [characters, setCharacters] = useState([]);
-  function getCharacters() {
-    fetch('http://localhost:1337/characters')
-      .then(res => res.json())
-      .then(data => setCharacters(data))
-  }
+  const dispatch = useDispatch();
+  useEffect(() => {
+    getCharacters();
+  }, []);
+
+  async function getCharacters() {
+    const characters = await fetch('http://localhost:1337/characters');
+    const res = await characters.json();
+    dispatch(setCharacters(await res));
+  };
+
   return (
     <div className="App">
-      <button onClick={getCharacters}>HEJ</button>
-      {characters ? characters.map((character) => <div>{character.name}</div>) : null}
-      <PlayerContainer />
-      <TeamAmountComponent />
-      <TeamContainer />
+      <Router>
+        <Nav />
+        <Routes>
+          <Route path="/" element={<Start />} />
+          <Route path="/chooseplayers" element={<PlayerContainer />} />
+          <Route path="/chooseteamamount" element={<TeamAmountComponent />} />
+          <Route path="/chooseteam" element={<ChooseTeamContainer />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

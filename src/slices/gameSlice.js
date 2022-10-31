@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    playerOne: "",
-    playerTwo: "",
+    playerOne: "Player 1",
+    playerTwo: "Player 2",
     playerOneTeam: [],
     playerTwoTeam: [],
     teamAmount: 1,
